@@ -1,0 +1,48 @@
+<div class="product-filter">
+  <form class="product-filter__form" [formGroup]="filterForm">
+    <div class="product-filter__form__controls">
+      <div class="product-filter__form__controls__button" (click)="appendSearchFilters()">
+        Filter
+      </div>
+      <div class="product-filter__form__controls__button" (click)="resetSearchFilters()">
+        Reset Filters
+      </div>
+    </div>
+    <div class="product-filter__form__filter-item">
+      <div class="product-filter__form__filter-item__dropdown" *ngFor="let formField of formFields">
+        <div class="product-filter__form__filter-item__dropdown__label">
+          {{formField.label}}
+        </div>
+        <p-dropdown
+          [formControlName]="formField.name"
+          [options]="formField.options"
+          optionLabel="name"
+          placeholder="Select Filter"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="product_filter__form__filter-item">
+      <div class="product-filter__form__filter-item__price-range">
+        <div class="product-filter__form__filter-item__price-range__inputs">
+          <input
+            type="text"
+            pInputText
+            formControlName="lowerPrice"
+          />
+          <input
+            type="text"
+            pInputText
+            formControlName="upperPrice"
+          />
+        </div>
+        <p-slider
+          formControlName="priceValues"
+          (onChange)="updatePriceRange()"
+          [min]="priceRanges.lowest_price_range"
+          [max]="priceRanges.max_price_range"
+          [range]="true"
+        ></p-slider>
+      </div>
+    </div>
+  </form>
+</div>

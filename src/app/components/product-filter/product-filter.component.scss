@@ -1,0 +1,13 @@
+.product-filter {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    padding: 0 1rem;
+  }
+}

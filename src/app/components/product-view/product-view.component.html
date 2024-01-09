@@ -1,0 +1,47 @@
+<div class="product-view">
+  <div class="product-view__filters">
+    <app-product-filter
+      [formFields]="filterFormFields"
+      [priceRanges]="priceRanges"
+      [currentQuery]="currentQuery"
+      (filterProducts)="updateCurrentQuery($event)"
+      *ngIf="!filtersDataLoading"
+    ></app-product-filter>
+  </div>
+  <div class="product-view__table">
+    <p-table
+      [value]="products"
+      [paginator]="true"
+      [rows]="40"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-height': '600px' }"
+      [lazy]="true"
+      (onLazyLoad)="loadProducts()"
+      [totalRecords]="totalProductsCount"
+      [scrollable]="true"
+      scrollHeight="600px"
+      (onPage)="pageChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:10%">Name</th>
+          <th style="width:10%">Brand</th>
+          <th style="width:10%">Material</th>
+          <th style="width:10%">Price</th>
+          <th style="width:10%">Size</th>
+          <th style="width:50%">Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.material }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.size }}</td>
+          <td>{{ product.product_description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

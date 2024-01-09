@@ -1,0 +1,15 @@
+.product-view {
+  display: flex;
+  height: 100%;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  padding: 12px;
+
+  &__filters {
+    flex: 1 1 20%;
+  }
+
+  &__table {
+    flex: 1 1 80%;
+  }
+}
