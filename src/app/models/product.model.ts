@@ -26,6 +26,7 @@ export interface ProductQuery {
   color?: { name: string; value: string };
   size?: { name: string; value: string };
   material?: { name: string; value: string };
+  sort?: { name: string; value: string };
   priceValues?: number[];
   lowerPrice?: number;
   upperPrice?: number;

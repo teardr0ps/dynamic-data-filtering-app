@@ -29,6 +29,18 @@ export class ProductViewComponent implements OnInit {
     { name: 'color', value: 'color', label: 'Color', options: [] },
     { name: 'size', value: 'size', label: 'Size', options: [] },
     { name: 'material', value: 'material', label: 'Material', options: [] },
+    {
+      name: 'sort',
+      value: 'sort',
+      label: 'Sort By (asc)',
+      options: [
+        {name: 'Brand', value: 'brand'},
+        {name: 'Color', value: 'color'},
+        {name: 'Size', value: 'size'},
+        {name: 'Material', value: 'material'},
+        {name: 'Price', value: 'price'}
+      ]
+    }
   ];
   priceRanges = {
     lowest_price_range: 0,
@@ -89,8 +101,9 @@ export class ProductViewComponent implements OnInit {
   }
 
   pageChange(event: TableLazyLoadEvent) {
+    // @ts-ignore
+    this.isCurrentPage = event.first / event.rows + 1 === this.currentQuery.page;
     if (event.first && event.rows) {
-      this.isCurrentPage = event.first / event.rows + 1 === this.currentQuery.page;
       this.currentQuery.page = event.first / event.rows + 1;
     } else {
       this.currentQuery.page = 1;
@@ -99,6 +112,11 @@ export class ProductViewComponent implements OnInit {
 
   mapOptionsToFormFields(response: FilterOptionsResponse): void {
     this.filterFormFields = this.filterFormFields.map(field => {
+      // This was done in a last minutes before test task deadline, forgot about this :(
+      if (field.name === 'sort') {
+        return {...field};
+      }
+
       const options = Array.isArray(response[field.name]) ? response[field.name] : [];
       return {
         ...field,

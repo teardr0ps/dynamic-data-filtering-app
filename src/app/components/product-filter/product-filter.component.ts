@@ -37,6 +37,7 @@ export class ProductFilterComponent implements OnInit {
       color: [''],
       size: [''],
       material: [''],
+      sort: [''],
       priceValues: [[this.priceRanges.lowest_price_range, this.priceRanges.max_price_range]],
       lowerPrice: [this.priceRanges.lowest_price_range],
       upperPrice: [this.priceRanges.max_price_range]
@@ -60,7 +61,8 @@ export class ProductFilterComponent implements OnInit {
       brand: [''],
       color: [''],
       size: [''],
-      material: ['']
+      material: [''],
+      sort: ['']
     });
     this.filterProducts.emit(query);
   }

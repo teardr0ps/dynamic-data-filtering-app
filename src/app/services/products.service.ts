@@ -21,6 +21,7 @@ export class ProductsService {
       .set('color', query.color?.value ?? '')
       .set('size', query.size?.value ?? '')
       .set('material', query.material?.value ?? '')
+      .set('_sort', query.sort?.value ?? '')
       .set('price_gte', query.lowerPrice?.toString() ?? '')
       .set('price_lte', query.upperPrice?.toString() ?? '');
 
