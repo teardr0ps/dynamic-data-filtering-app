@@ -10,8 +10,9 @@ And using json-server and some mock data as datasource. For the filters, all ava
 Unfortunately, basic json-server does not support regular search by matches and have poor sorting (asc only), so only this filter is unavailable.
 
 ## Development server
+Run `npm install` to install all needed dependencies.
 
-Run `npm run start` for a dev server. The application will automatically run json-server instance and reload if you change any of the source files.
+Then run `npm run start` for a dev server. The application will automatically run json-server instance and reload if you change any of the source files.
 
 Navigate to `http://localhost:4200/`.
 
