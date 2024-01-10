@@ -7,7 +7,7 @@ And using json-server and some mock data as datasource. For the filters, all ava
 
 *Range filters for price
 
-Unfortunately, basic json-server does not support regular search by matches, so only this filter is unavailable.
+Unfortunately, basic json-server does not support regular search by matches and have poor sorting (asc only), so only this filter is unavailable.
 
 ## Development server
 
