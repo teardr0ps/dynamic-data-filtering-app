@@ -1,3 +1,6 @@
+<div class="title">
+  Test Task: Dynamic Data Filtering Application
+</div>
 <div class="product-view">
   <div class="product-view__filters">
     <app-product-filter
@@ -5,12 +8,13 @@
       [priceRanges]="priceRanges"
       [currentQuery]="currentQuery"
       (filterProducts)="updateCurrentQuery($event)"
-      *ngIf="!filtersDataLoading"
+      *ngIf="!filtersDataLoading; else loadingSpinner"
     ></app-product-filter>
   </div>
   <div class="product-view__table">
     <p-table
       [value]="products"
+      [loading]="productsLoading"
       [paginator]="true"
       [rows]="40"
       [showCurrentPageReport]="true"
@@ -45,3 +49,11 @@
     </p-table>
   </div>
 </div>
+
+<ng-template #loadingSpinner>
+  <p-progressSpinner
+    styleClass="custom-spinner"
+    strokeWidth="8"
+    [style]="{ width: '50px', height: '50px'}"
+  ></p-progressSpinner>
+</ng-template>

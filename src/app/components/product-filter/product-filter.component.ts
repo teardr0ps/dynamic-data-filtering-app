@@ -6,6 +6,7 @@ import {FilterFormField, PriceRangesOptions} from "../../models/filter-options.m
 import {InputTextModule} from "primeng/inputtext";
 import {SliderModule} from "primeng/slider";
 import {ProductQuery} from "../../models/product.model";
+import {ButtonModule} from "primeng/button";
 
 @Component({
   selector: 'app-product-filter',
@@ -15,7 +16,8 @@ import {ProductQuery} from "../../models/product.model";
     ReactiveFormsModule,
     NgForOf,
     InputTextModule,
-    SliderModule
+    SliderModule,
+    ButtonModule
   ],
   templateUrl: './product-filter.component.html',
   styleUrl: './product-filter.component.scss'

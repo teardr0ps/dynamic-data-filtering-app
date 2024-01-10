@@ -6,10 +6,43 @@
   padding: 12px;
 
   &__filters {
-    flex: 1 1 20%;
+    flex: 1 1 15%;
+    display: flex;
+    justify-content: center;
   }
 
   &__table {
-    flex: 1 1 80%;
+    flex: 1 1 85%;
   }
+}
+
+:host::ng-deep.custom-spinner .p-progress-spinner-circle {
+  animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
+}
+
+@keyframes custom-progress-spinner-color {
+  100%,
+  0% {
+    stroke: #3B82F6;
+  }
+  40% {
+    stroke: #3B82F6;
+  }
+  66% {
+    stroke: #3B82F6;
+  }
+  80%,
+  90% {
+    stroke: #3B82F6;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 14px;
+  font-size: 18px;
+  line-height: 16px;
+  font-weight: 500;
 }

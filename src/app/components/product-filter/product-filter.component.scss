@@ -8,6 +8,48 @@
     flex-direction: column;
     gap: 12px;
     height: 100%;
-    padding: 0 1rem;
+    border-right: 1px solid lightgray;
+
+    &__controls {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      height: 54px;
+      border-bottom: 1px solid #e9ecef;
+      padding-right: 12px;
+    }
+
+    &__filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-right: 12px;
+
+      &__dropdown {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      &__price-range {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        &__inputs {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          pointer-events: none;
+          padding-bottom: 12px;
+
+          input {
+            display: flex;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }

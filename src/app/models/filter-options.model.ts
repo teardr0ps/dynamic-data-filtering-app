@@ -18,7 +18,6 @@ export interface FilterFormField {
   value: string;
   label: string;
   options: FilterOption[];
-  // Add more specific properties here if needed
 }
 
 export interface PriceRangesOptions {

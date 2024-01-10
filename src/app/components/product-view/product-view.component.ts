@@ -5,6 +5,8 @@ import {ProductsService} from "../../services/products.service";
 import {Product, ProductQuery} from "../../models/product.model";
 import {FilterFormField, FilterOption, FilterOptionsResponse} from "../../models/filter-options.model";
 import {NgIf} from "@angular/common";
+import {catchError, delay, EMPTY} from "rxjs";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @Component({
   selector: 'app-product-view',
@@ -12,7 +14,8 @@ import {NgIf} from "@angular/common";
   imports: [
     ProductFilterComponent,
     TableModule,
-    NgIf
+    NgIf,
+    ProgressSpinnerModule
   ],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss'
@@ -35,18 +38,26 @@ export class ProductViewComponent implements OnInit {
     page: 1,
     per_page: 40
   };
-  filtersDataLoading = false;
+  filtersDataLoading = true;
+  productsLoading = true;
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.filtersDataLoading = true;
     this.productsService.getAvailableFilterOptions()
-      .pipe()
-      .subscribe(res => {
-        this.mapOptionsToFormFields(res);
-        this.priceRanges.lowest_price_range = res.lowest_price_range;
-        this.priceRanges.max_price_range = res.max_price_range;
+      .pipe(
+        delay(2000),
+        catchError(err => {
+          console.warn(err);
+          this.filtersDataLoading = false;
+          return EMPTY;
+        })
+      )
+      .subscribe(filterOptions => {
+        this.mapOptionsToFormFields(filterOptions);
+        this.priceRanges.lowest_price_range = filterOptions.lowest_price_range;
+        this.priceRanges.max_price_range = filterOptions.max_price_range;
         this.filtersDataLoading = false;
     })
   }
@@ -55,10 +66,20 @@ export class ProductViewComponent implements OnInit {
     if (this.isCurrentPage) {
       return;
     }
+    this.productsLoading = true;
     this.productsService.getProducts(this.currentQuery)
-      .subscribe(res => {
-        this.products = res.data;
-        this.totalProductsCount = res.items;
+      .pipe(
+        delay(2000),
+        catchError(err => {
+          console.warn(err);
+          this.productsLoading = false;
+          return EMPTY;
+        })
+      )
+      .subscribe(productsResponse => {
+        this.products = productsResponse.data;
+        this.totalProductsCount = productsResponse.items;
+        this.productsLoading = false;
     })
   }
 
